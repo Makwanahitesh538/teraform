@@ -11,9 +11,3 @@ crash.log
 # Terraform lock file
 .terraform.lock.hcl
 *.doc
-**/.terraform/*
-*.tfstate
-*.tfstate.*
-crash.log
-.terraform.lock.hcl
-.vscode/
