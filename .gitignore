@@ -5,9 +5,15 @@
 *.tfstate
 *.tfstate.*
 
+# Crash log files
+crash.log
+
 # Terraform lock file
 .terraform.lock.hcl
-# documents
 *.doc
-
-
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform.lock.hcl
+.vscode/
