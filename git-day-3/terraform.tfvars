@@ -1,1 +1,1 @@
-instance_type = "t2.nanogit"
+instance_type = "t2.nano"
