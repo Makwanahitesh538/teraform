@@ -14,3 +14,5 @@ resource "aws_instance" "name" {
         bucket = "hiteshbhaualltimegreatofthebuckets"
         
     }
+
+    
