@@ -4,7 +4,7 @@ resource "aws_instance" "name" {
     subnet_id = "subnet-0fe90fae97ec2eb1f"
     key_name = "mykey"
     tags = {
-        Name = "MyFirstInstance"
+        Name = "tesaat"
     }
   
 }
