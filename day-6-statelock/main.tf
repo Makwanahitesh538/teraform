@@ -1,0 +1,15 @@
+resource "aws_instance" "name" {
+    ami = "ami-0305d3d91b9f22e84"
+    instance_type = "t2.micro"
+    subnet_id = "subnet-0fe90fae97ec2eb1f"
+    key_name = "mykey"
+    tags = {
+        Name = "MyFirstInstance"
+    }
+  
+}
+resource "aws_s3_bucket" "name" {
+    bucket = "jrfhewjouehfuqehfdeofhuheiofswufbw"
+    region = "ap-south-1"
+    
+}
