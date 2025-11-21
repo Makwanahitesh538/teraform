@@ -1,1 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+    
+        stage ("terraform init") {
+            steps {
+                dir('day-3') {
+                    sh "terraform init -reconfigure"
+                }
+            }
+        }
+        
+        stage ("plan") {
+            steps {
+                dir('day-3') {
+                    sh "terraform plan"
+                }
+            }
+        }
+
+        stage ("Action") {
+            steps {
+                dir('day-3') {
+                    echo "Terraform action is --> ${action}"
+                    sh "terraform ${action} --auto-approve"
+                }
+           }
+        }
+    }
+}
 
