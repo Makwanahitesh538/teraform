@@ -1,4 +1,4 @@
-pipeline {
+pipepipeline {
     agent any
 
     stages {
@@ -10,23 +10,27 @@ pipeline {
     
         stage ("terraform init") {
             steps {
-                sh ("terraform init -reconfigure") 
+                dir('day-3') {
+                    sh "terraform init -reconfigure"
+                }
             }
         }
         
         stage ("plan") {
             steps {
-                sh ('terraform plan') 
+                dir('day-3') {
+                    sh "terraform plan"
+                }
             }
         }
 
-        stage (" Action") {
+        stage ("Action") {
             steps {
-                echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
+                dir('day-3') {
+                    echo "Terraform action is --> ${action}"
+                    sh "terraform ${action} --auto-approve"
+                }
            }
         }
     }
 }
- 
-
