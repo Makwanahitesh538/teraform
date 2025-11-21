@@ -7,25 +7,43 @@ pipeline {
                 checkout scm
             }
         }
-    
-        stage ("terraform init") {
+
+        stage('Terraform Init') {
             steps {
-                sh ("terraform init -reconfigure") 
-            }
-        }
-        
-        stage ("plan") {
-            steps {
-                sh ('terraform plan') 
+                sh 'terraform init -reconfigure'
             }
         }
 
-        stage (" Action") {
+        stage('Terraform Plan') {
             steps {
-                echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
-           }
+                sh 'terraform plan'
+            }
+        }
+
+        stage('Terraform Apply') {
+            when {
+                expression { params.theparameters == 'apply' }
+            }
+            steps {
+                sh 'terraform apply -auto-approve'
+            }
+        }
+
+        stage('Terraform Destroy') {
+            when {
+                expression { params.theparameters == 'destroy' }
+            }
+            steps {
+                sh 'terraform destroy -auto-approve'
+            }
         }
     }
+
+    parameters {
+        choice(
+            name: 'theparameters',
+            choices: ['apply', 'destroy'],
+            description: 'Choose apply or destroy'
+        )
+    }
 }
- 
