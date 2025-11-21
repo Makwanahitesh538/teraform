@@ -10,13 +10,17 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                sh 'terraform init -reconfigure'
+                dir('day-9-module') {
+                    sh 'terraform init -reconfigure'
+                }
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan'
+                dir('day-9-module') {
+                    sh 'terraform plan'
+                }
             }
         }
 
@@ -25,7 +29,9 @@ pipeline {
                 expression { params.theparameters == 'apply' }
             }
             steps {
-                sh 'terraform apply -auto-approve'
+                dir('day-9-module') {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
 
@@ -34,7 +40,9 @@ pipeline {
                 expression { params.theparameters == 'destroy' }
             }
             steps {
-                sh 'terraform destroy -auto-approve'
+                dir('day-9-module') {
+                    sh 'terraform destroy -auto-approve'
+                }
             }
         }
     }
